@@ -142,7 +142,7 @@ withNewDirectory keep dir action = do
                      | otherwise = removePathForcibly dir'
 
 isolateWorkingDirectory :: Bool -> FilePath -> IO a -> IO a
-isolateWorkingDirectory keep dir action = do
+isolateWorkingDirectory !keep dir action = do
   when (normalise dir `List.elem` [".", "./"]) $
     throwIO (userError ("isolateWorkingDirectory cannot be used " <>
                         "with current directory"))
